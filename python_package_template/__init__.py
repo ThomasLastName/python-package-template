@@ -1,7 +1,7 @@
 #
 # ~~~ See distribution
 from pkg_resources import get_distribution, DistributionNotFound
-dist = get_distribution('python_package_templage')
+dist = get_distribution('python_package_template')
 
 #
 # ~~~ Fetch local package version
