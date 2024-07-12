@@ -41,5 +41,16 @@ def check_for_update_available(__version__):
 
 check_for_update_available(__version__)
 
+#
+# ~~~ Grab some other metadata including the url
+__metadata__ = dist.get_metadata(dist.PKG_INFO)
+try:
+    for line in __metadata__.splitlines():
+        if line.startswith('Home-page:'):
+            __url__ = line.split(':', 1)[1].strip()
+            break
+except:
+    __url__ = None  # or some default value
+
 
 
