@@ -34,6 +34,7 @@ def check_for_update_available(__version__):
                 f"Consider upgrading using ",
                 UserWarning
             )
+            print("test")
     except Exception as e:
         import warnings
         warnings.warn(f"Could not check the latest version of bnns: {e}")
