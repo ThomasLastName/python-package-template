@@ -6,7 +6,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'package_name',
+    name = 'python_package_template',
     version = '0.0.0',
     url = 'https://github.com/ThomasLastName/python-package-template',
     author = 'Thomas Winckelman',
