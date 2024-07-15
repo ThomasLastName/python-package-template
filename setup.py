@@ -7,11 +7,11 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'python_package_template',
-    version = '0.1.0',
+    version = '0.1.1',
     url = 'https://github.com/ThomasLastName/python-package-template',
     author = 'Thomas Winckelman',
     author_email = 'winckelman@tamu.edu',
     description = 'Python package template',
     packages = find_packages(),    
-    install_requires = ["pyreadr"]    # ~~~ when you pip install `package_name`, pip will also install `pyreadr`
+    install_requires = ["requests"]    # ~~~ when you pip install `python_package_template`, pip will also install `requests`
 )
