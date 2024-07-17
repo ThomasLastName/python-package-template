@@ -46,18 +46,17 @@ def see_latest_version(__url__):
 #
 # ~~~ Compare the local version number with the version number on the setup.py on github
 def check_for_update_available(__version__):
+    import warnings
     try:
-        latest_version = see_latest_version()
+        latest_version = see_latest_version(__url__)    # ~~~ returns a text sting
         if not latest_version=="no internet":
             if __version__ < latest_version:
-                    import warnings
                     warnings.warn(
                         f"You are using {dist.project_name} version {__version__}, but version {latest_version} is available. See {__url__} for more information, including how to upgrade.",
                         UserWarning
                     )
                     # print("test")
     except Exception as e:
-        import warnings
         warnings.warn(f"Could not check the latest version of {__name__}: {e}")
 
 check_for_update_available(__version__)
