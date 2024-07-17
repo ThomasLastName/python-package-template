@@ -7,7 +7,11 @@ My (work in progress) template for a python package, with only the features I wa
 
 # Usage
 
-If you're building a package, first follow the "developer" installation instructions below. Next build a package lol. Of course, you'll need to replace `python(-/_)package(-/_)template` with your package name, and populate the folder containing the `__init__.py` file with your own code.
+If you're building a package, then you'll need to:
+ - [ ] update the `setup.py` file (replace `python(-/_)package(-/_)template` with your package name, replace the url with your package's github url, replace the author name, etc.),
+ - [ ] rename the name of the folder containint the `__init__.py` file to the name of your package (**the name of this folder must match the `name` argument passed to `setup` in `setup.py`**), and
+ - [ ] populate that same folder with the actual contents of your package.
+
 
 # Installation/Upgrading
 
