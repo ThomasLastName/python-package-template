@@ -29,7 +29,7 @@ def see_latest_version(__url__):
         url = "https://raw.githubusercontent.com" + username_and_slug + "/main/setup.py"
         response = requests.get(url)
     except ( requests.ConnectionError, requests.Timeout ):   # ~~~ except don't worry if we don't have an internet connection
-        return None
+        return "no internet"
     #
     # ~~~ Parse the contents of the setup.py file
     if response.status_code == 200:
@@ -37,7 +37,7 @@ def see_latest_version(__url__):
         version_match = re.search(r"version\s*=\s*['\"]([^'\"]+)['\"]", setup_py_content)
         if version_match:
             latest_version = version_match.group(1)
-            return latest_version        
+            return latest_version     # ~~~ a text string
         else:
             raise ValueError("Version string not found in setup.py.")
     else:
@@ -48,13 +48,14 @@ def see_latest_version(__url__):
 def check_for_update_available(__version__):
     try:
         latest_version = see_latest_version()
-        if __version__ < latest_version:
-            import warnings
-            warnings.warn(
-                f"You are using {dist.project_name} version {__version__}, but version {latest_version} is available. See {__url__} for more information, including how to upgrade.",
-                UserWarning
-            )
-            # print("test")
+        if not latest_version=="no internet":
+            if __version__ < latest_version:
+                    import warnings
+                    warnings.warn(
+                        f"You are using {dist.project_name} version {__version__}, but version {latest_version} is available. See {__url__} for more information, including how to upgrade.",
+                        UserWarning
+                    )
+                    # print("test")
     except Exception as e:
         import warnings
         warnings.warn(f"Could not check the latest version of {__name__}: {e}")
