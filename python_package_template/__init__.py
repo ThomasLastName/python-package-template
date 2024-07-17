@@ -1,9 +1,8 @@
 
 #
 # ~~~ Fetch local package version from setup.py
-
 from pkg_resources import get_distribution, DistributionNotFound
-dist = get_distribution(__name__)
+dist = get_distribution(__name__)    # ~~~ tbh I am surprised that __name__ is already defined
 __version__ = dist.version
 
 #
@@ -19,12 +18,15 @@ except:
 
 #
 # ~~~ View the latest version number on the setup.py on github (chat-gpt came up with this one)
-def see_latest_version():
+def see_latest_version(__url__):
+    if __url__ is None:
+        raise ValueError("Could not find url of {__name__}")
     #
     # ~~~ Read the contents of the setup.py file
     try:                                                     # ~~~ try to read the setup.py file on github
-        import requests, re
-        url = "https://raw.githubusercontent.com/ThomasLastName/python-package-template/main/setup.py"
+        import requests, re, os
+        username_and_slug = os.path.splitext(__url__[ __url__.find(".com")+len(".com") : ])[0]
+        url = "https://raw.githubusercontent.com" + username_and_slug + "/main/setup.py"
         response = requests.get(url)
     except ( requests.ConnectionError, requests.Timeout ):   # ~~~ except don't worry if we don't have an internet connection
         return None
@@ -40,16 +42,6 @@ def see_latest_version():
             raise ValueError("Version string not found in setup.py.")
     else:
         raise ValueError(f"Failed to fetch setup.py: {response.status_code} - {response.text}")
-
-#
-# ~~~ Check whether or not internet connection is available
-def we_have_internet():
-    try:
-        import requests
-        response = requests.get( "http://www.google.com", timeout=5 )
-        return True
-    except ( requests.ConnectionError, requests.Timeout ):
-        return False
 
 #
 # ~~~ Compare the local version number with the version number on the setup.py on github
