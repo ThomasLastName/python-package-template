@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'python_package_template',
-    version = '0.3.0',
+    version = '0.3.1',
     url = 'https://github.com/ThomasLastName/python-package-template',
     author = 'Thomas Winckelman',
     author_email = 'winckelman@tamu.edu',
